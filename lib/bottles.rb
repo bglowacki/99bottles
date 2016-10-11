@@ -18,11 +18,23 @@ class SecondLine
   end
 
   def to_s
-    "Take one down and pass it around, #{@number} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall.\n"
+    "Take #{verse_1? ? "it" : "one"} down and pass it around, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall.\n"
   end
 
   def plural?(number)
-    number > 1
+    number != 1
+  end
+
+  def verse_1?
+    @number == 0
+  end
+
+  def number_form
+    if @number == 0
+      "no more"
+    else
+      @number
+    end
   end
 end
 
