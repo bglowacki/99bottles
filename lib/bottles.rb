@@ -59,4 +59,9 @@ class Bottles
   def verse(number)
     [FirstLine.new(number).to_s, SecondLine.new(number).to_s].join
   end
+
+  def verses(from_verse_number, to_verse_number)
+    span = (to_verse_number..from_verse_number).to_a.reverse
+    span.map {|n| verse(n)}.join("\n")
+  end
 end
