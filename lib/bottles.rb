@@ -23,10 +23,6 @@ end
 
 
 class Line
-  def plural?(number)
-    number != 1
-  end
-
   def verse_0?
     @number == 0
   end
