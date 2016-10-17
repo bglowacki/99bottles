@@ -4,11 +4,19 @@ class FirstLine
   end
 
   def to_s
-    "#{@number} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall, #{@number} #{plural?(@number) ? "bottles" : "bottle"} of beer.\n"
+    "#{number_form.capitalize} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer.\n"
   end
 
   def plural?(number)
-    number > 1
+    number > 1 || number == 0
+  end
+
+  def verse_0?
+    @number == 0
+  end
+
+  def number_form
+    verse_0? ? "no more" : "#{@number}"
   end
 end
 
@@ -18,7 +26,11 @@ class SecondLine
   end
 
   def to_s
-    "Take #{verse_1? ? "it" : "one"} down and pass it around, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall.\n"
+    if verse_0?
+      "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
+    else
+      "Take #{verse_1? ? "it" : "one"} down and pass it around, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall.\n"
+    end
   end
 
   def plural?(number)
@@ -27,6 +39,10 @@ class SecondLine
 
   def verse_1?
     @number == 0
+  end
+
+  def verse_0?
+    @number == -1
   end
 
   def number_form
