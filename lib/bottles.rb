@@ -46,11 +46,7 @@ class SecondLine
   end
 
   def number_form
-    if @number == 0
-      "no more"
-    else
-      @number
-    end
+    verse_1? ?  "no more" : "#{@number}"
   end
 end
 
