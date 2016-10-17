@@ -56,6 +56,10 @@ end
 
 
 class Bottles
+  def song
+    verses(99, 0)
+  end
+
   def verse(number)
     [FirstLine.new(number).to_s, SecondLine.new(number).to_s].join
   end
