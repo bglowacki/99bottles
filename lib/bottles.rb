@@ -1,11 +1,4 @@
-class FirstLine
-  def initialize(number)
-    @number = number
-  end
-
-  def to_s
-    "#{number_form.capitalize} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer.\n"
-  end
+class Line
 
   def plural?(number)
     number != 1
@@ -20,7 +13,19 @@ class FirstLine
   end
 end
 
-class SecondLine
+class FirstLine < Line
+  def initialize(number)
+    @number = number
+  end
+
+  def to_s
+    "#{number_form.capitalize} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer.\n"
+  end
+
+
+end
+
+class SecondLine < Line
   def initialize(number)
     @number = number - 1
   end
