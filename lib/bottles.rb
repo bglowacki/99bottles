@@ -1,5 +1,28 @@
-class Line
+class Pluralizer
+  def self.pluralize(word, number)
+    new(word, number).to_s
+  end
 
+  def initialize(word, number)
+    @word = word
+    @number = number
+  end
+
+  def to_s
+    @number != 1 ? plural : singular
+  end
+
+  def singular
+    @word
+  end
+
+  def plural
+    @word + "s"
+  end
+end
+
+
+class Line
   def plural?(number)
     number != 1
   end
@@ -19,10 +42,8 @@ class FirstLine < Line
   end
 
   def to_s
-    "#{number_form.capitalize} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer.\n"
+    "#{number_form.capitalize} #{Pluralizer.pluralize("bottle", @number)} of beer on the wall, #{number_form} #{Pluralizer.pluralize("bottle", @number)} of beer.\n"
   end
-
-
 end
 
 class SecondLine < Line
@@ -34,12 +55,8 @@ class SecondLine < Line
     if verse_0?
       "Go to the store and buy some more, 99 bottles of beer on the wall.\n"
     else
-      "Take #{verse_1? ? "it" : "one"} down and pass it around, #{number_form} #{plural?(@number) ? "bottles" : "bottle"} of beer on the wall.\n"
+      "Take #{verse_1? ? "it" : "one"} down and pass it around, #{number_form} #{Pluralizer.pluralize("bottle", @number)} of beer on the wall.\n"
     end
-  end
-
-  def plural?(number)
-    number != 1
   end
 
   def verse_1?
