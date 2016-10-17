@@ -8,7 +8,7 @@ class FirstLine
   end
 
   def plural?(number)
-    number > 1 || number == 0
+    number != 1
   end
 
   def verse_0?
